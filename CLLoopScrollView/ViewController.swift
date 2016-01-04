@@ -20,10 +20,10 @@ class ViewController: UIViewController {
         let image3 = UIImage(named: "image3")!
         let images = [image1,image2,image3]
         
-        let loopView = CLLoopView()
+        let loopView = CLLoopView(frame: CGRectMake(0, 22, self.view.frame.size.width, 150))
         self.view.addSubview(loopView)
-        loopView.frame = CGRectMake(0, 22, self.view.frame.size.width, 150)
         loopView.arrImage = images;
+        loopView.autoShow = true
     }
 
     override func didReceiveMemoryWarning() {

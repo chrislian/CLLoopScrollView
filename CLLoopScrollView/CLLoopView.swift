@@ -11,6 +11,15 @@ import UIKit
 class CLLoopView: UIView,UIScrollViewDelegate {
 
     //MARK: life cycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initializeUI()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     deinit{
         self.stopTimer()
     }
@@ -25,6 +34,9 @@ class CLLoopView: UIView,UIScrollViewDelegate {
             let ratio = scrollView.contentOffset.x/self.frame.size.width
             self.endScrollMethod(ratio)
         }
+    }
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.stopTimer()
     }
     
     //MARK: reload data
@@ -88,31 +100,37 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
         
         self.reloadImageData()
+        self.startTimer()
     }
     
     //MARK: event response
     @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
         //todo
     }
-    private func autoTurnNextView(){
+    @objc private func autoTurnNextView(){
         
         if currentPage == arrImage.count - 1{
             currentPage = 0
         }else{
             currentPage += 1
         }
+        self.reloadImageData()
     }
     
     private func startTimer(){
-        timer = nil
-        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "autoTurnNextView", userInfo: nil, repeats: true)
+        if autoShow{
+            timer = nil
+            timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: "autoTurnNextView", userInfo: nil, repeats: true)
+        }
     }
     private func stopTimer(){
-        guard let timer = self.timer else{
-            return
-        }
-        if timer.valid{
-            timer.invalidate()
+        if autoShow{
+            guard let timer = self.timer else{
+                return
+            }
+            if timer.valid{
+                timer.invalidate()
+            }
         }
     }
     
@@ -139,32 +157,29 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     
-    lazy var pageControl:UIPageControl = {
-        let pageControl = UIPageControl()
+    let pageControl:UIPageControl = UIPageControl()
+    
+    let loopScrollView:UIScrollView = UIScrollView()
+
+    func initializeUI(){
+        
+        loopScrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
+        loopScrollView.contentSize = CGSizeMake(self.frame.size.width * 3.0,self.frame.size.height)
+        loopScrollView.showsVerticalScrollIndicator = false
+        loopScrollView.showsHorizontalScrollIndicator = false
+        loopScrollView.delegate = self
+        loopScrollView.bounces = false
+        self.addSubview(loopScrollView)
+        
         pageControl.frame = CGRectMake(0,self.frame.size.height - 20,self.frame.size.width,20)
         pageControl.userInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.298, green: 0.298, blue: 0.298, alpha: 1.0 )
         pageControl.pageIndicatorTintColor = UIColor ( red: 0.902, green: 0.902, blue: 0.902, alpha: 1.0 )
         self.addSubview(pageControl)
-        return pageControl
-    }()
-    
-    lazy var loopScrollView:UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
-        scrollView.contentSize = CGSizeMake(self.frame.size.width * 3.0,self.frame.size.height)
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.delegate = self
-        scrollView.bounces = false
-        self.addSubview(scrollView)
-        return scrollView
-    }()
-    
-    lazy var tagGestrue:UITapGestureRecognizer = {
+        
         let tap = UITapGestureRecognizer(target: self, action: "tapGestureHandle:")
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
-        return tap
-    }()
+        loopScrollView.addGestureRecognizer(tap)
+    }
 }
