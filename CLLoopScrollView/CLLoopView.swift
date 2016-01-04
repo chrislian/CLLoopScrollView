@@ -157,10 +157,10 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     
-    let pageControl:UIPageControl = UIPageControl()
+    private let pageControl:UIPageControl = UIPageControl()
     
-    let loopScrollView:UIScrollView = UIScrollView()
-
+    private let loopScrollView:UIScrollView = UIScrollView()
+    
     func initializeUI(){
         
         loopScrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
