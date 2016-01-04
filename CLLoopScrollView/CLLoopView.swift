@@ -40,7 +40,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     }
     
     //MARK: reload data
-    func reloadImageData(){
+    private func updateImageData(){
         let array = self.loopScrollView.subviews
         for view in array{
             view.removeFromSuperview()
@@ -82,7 +82,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
 
     }
     
-    func endScrollMethod(ratio:CGFloat){
+    private func endScrollMethod(ratio:CGFloat){
         
         if ratio <= 0.8{
             if currentPage - 1 < 0{
@@ -99,22 +99,8 @@ class CLLoopView: UIView,UIScrollViewDelegate {
             }
         }
         
-        self.reloadImageData()
+        self.updateImageData()
         self.startTimer()
-    }
-    
-    //MARK: event response
-    @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
-        //todo
-    }
-    @objc private func autoTurnNextView(){
-        
-        if currentPage == arrImage.count - 1{
-            currentPage = 0
-        }else{
-            currentPage += 1
-        }
-        self.reloadImageData()
     }
     
     private func startTimer(){
@@ -132,6 +118,20 @@ class CLLoopView: UIView,UIScrollViewDelegate {
                 timer.invalidate()
             }
         }
+    }
+    
+    //MARK: event response
+    @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
+        //todo
+    }
+    @objc private func autoTurnNextView(){
+        
+        if currentPage == arrImage.count - 1{
+            currentPage = 0
+        }else{
+            currentPage += 1
+        }
+        self.updateImageData()
     }
     
     //MARK: setter & getter
@@ -153,7 +153,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
             pageControl.numberOfPages = newValue.count
         }
         didSet{
-            self.reloadImageData()
+            self.updateImageData()
         }
     }
     
