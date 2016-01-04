@@ -138,6 +138,17 @@ class CLLoopView: UIView,UIScrollViewDelegate {
             self.reloadImageData()
         }
     }
+    
+    lazy var pageControl:UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.frame = CGRectMake(0,self.frame.size.height - 20,self.frame.size.width,20)
+        pageControl.userInteractionEnabled = false
+        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.298, green: 0.298, blue: 0.298, alpha: 1.0 )
+        pageControl.pageIndicatorTintColor = UIColor ( red: 0.902, green: 0.902, blue: 0.902, alpha: 1.0 )
+        self.addSubview(pageControl)
+        return pageControl
+    }()
+    
     lazy var loopScrollView:UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
@@ -148,17 +159,6 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         scrollView.bounces = false
         self.addSubview(scrollView)
         return scrollView
-    }()
-    
-    lazy var pageControl:UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.frame = CGRectMake(0,self.frame.size.height - 20,self.frame.size.width,20)
-        pageControl.userInteractionEnabled = false
-        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.298, green: 0.298, blue: 0.298, alpha: 1.0 )
-        pageControl.pageIndicatorTintColor = UIColor ( red: 0.902, green: 0.902, blue: 0.902, alpha: 1.0 )
-        self.addSubview(pageControl)
-        
-        return pageControl
     }()
     
     lazy var tagGestrue:UITapGestureRecognizer = {
