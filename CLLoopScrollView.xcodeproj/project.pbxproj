@@ -14,6 +14,7 @@
 		83004CB01C3A5D1F0044E3D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83004CAE1C3A5D1F0044E3D6 /* LaunchScreen.storyboard */; };
 		83004CBB1C3A5D1F0044E3D6 /* CLLoopScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83004CBA1C3A5D1F0044E3D6 /* CLLoopScrollViewTests.swift */; };
 		83004CC61C3A5D1F0044E3D6 /* CLLoopScrollViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83004CC51C3A5D1F0044E3D6 /* CLLoopScrollViewUITests.swift */; };
+		83004CD51C3A5D8D0044E3D6 /* CLLoopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83004CD41C3A5D8D0044E3D6 /* CLLoopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		83004CC11C3A5D1F0044E3D6 /* CLLoopScrollViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLLoopScrollViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83004CC51C3A5D1F0044E3D6 /* CLLoopScrollViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLoopScrollViewUITests.swift; sourceTree = "<group>"; };
 		83004CC71C3A5D1F0044E3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83004CD41C3A5D8D0044E3D6 /* CLLoopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLoopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		83004CA41C3A5D1F0044E3D6 /* CLLoopScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				83004CD31C3A5D710044E3D6 /* CLLoopView */,
 				83004CA51C3A5D1F0044E3D6 /* AppDelegate.swift */,
 				83004CA71C3A5D1F0044E3D6 /* ViewController.swift */,
 				83004CA91C3A5D1F0044E3D6 /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				83004CC71C3A5D1F0044E3D6 /* Info.plist */,
 			);
 			path = CLLoopScrollViewUITests;
+			sourceTree = "<group>";
+		};
+		83004CD31C3A5D710044E3D6 /* CLLoopView */ = {
+			isa = PBXGroup;
+			children = (
+				83004CD41C3A5D8D0044E3D6 /* CLLoopView.swift */,
+			);
+			name = CLLoopView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83004CA81C3A5D1F0044E3D6 /* ViewController.swift in Sources */,
+				83004CD51C3A5D8D0044E3D6 /* CLLoopView.swift in Sources */,
 				83004CA61C3A5D1F0044E3D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
