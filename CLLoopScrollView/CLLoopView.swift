@@ -145,6 +145,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.delegate = self
+        scrollView.bounces = false
         self.addSubview(scrollView)
         return scrollView
     }()
