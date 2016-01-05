@@ -18,7 +18,8 @@ class ViewController: UIViewController {
         let image1 = UIImage(named: "image1")!
         let image2 = UIImage(named: "image2")!
         let image3 = UIImage(named: "image3")!
-        let images = [image1,image2,image3]
+        let image4 = UIImage(named: "image4")!
+        let images = [image1,image2,image3,image4]
         
         let loopView = CLLoopView(frame: CGRectMake(0, 22, self.view.frame.size.width, 150))
         self.view.addSubview(loopView)

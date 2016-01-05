@@ -106,7 +106,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     private func startTimer(){
         if autoShow{
             timer = nil
-            timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: "autoTurnNextView", userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "autoTurnNextView", userInfo: nil, repeats: true)
         }
     }
     private func stopTimer(){
@@ -120,48 +120,8 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     
-    //MARK: event response
-    @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
-        //todo
-    }
-    @objc private func autoTurnNextView(){
-        
-        if currentPage == arrImage.count - 1{
-            currentPage = 0
-        }else{
-            currentPage += 1
-        }
-        self.updateImageData()
-    }
     
-    //MARK: setter & getter
-    var timer:NSTimer? = nil
-    var currentPage:Int = 0
-    
-    var autoShow:Bool = false{
-        willSet{
-            if newValue{
-                self.startTimer()
-            }else{
-                self.stopTimer()
-            }
-        }
-    }
-    var arrImage:[UIImage] = []{
-        willSet{
-            currentPage = 0
-            pageControl.numberOfPages = newValue.count
-        }
-        didSet{
-            self.updateImageData()
-        }
-    }
-    
-    private let pageControl:UIPageControl = UIPageControl()
-    
-    private let loopScrollView:UIScrollView = UIScrollView()
-    
-    func initializeUI(){
+    private func initializeUI(){
         
         loopScrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
         loopScrollView.contentSize = CGSizeMake(self.frame.size.width * 3.0,self.frame.size.height)
@@ -182,4 +142,60 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         tap.numberOfTouchesRequired = 1
         loopScrollView.addGestureRecognizer(tap)
     }
+    
+    //MARK: event response
+    @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
+        //todo
+    }
+    @objc private func autoTurnNextView(){
+        
+        if currentPage == arrImage.count - 1{
+            currentPage = 0
+        }else{
+            currentPage += 1
+        }
+        self.updateImageData()
+    }
+    
+    //MARK: setter & getter
+    var timer:NSTimer? = nil
+    var currentPage:Int = 0
+    
+    var timeInterval:NSTimeInterval = 3{
+        willSet{
+            if autoShow{
+                self.stopTimer()
+            }
+        }
+        didSet{
+            if autoShow{
+                self.startTimer()
+            }
+        }
+    }
+    
+    var autoShow:Bool = false{
+        didSet{
+            if autoShow{
+                self.startTimer()
+            }else{
+                self.stopTimer()
+            }
+        }
+    }
+    
+    var arrImage:[UIImage] = []{
+        willSet{
+            currentPage = 0
+            pageControl.numberOfPages = newValue.count
+        }
+        didSet{
+            self.updateImageData()
+        }
+    }
+    
+    private let pageControl:UIPageControl = UIPageControl()
+    
+    private let loopScrollView:UIScrollView = UIScrollView()
+
 }
