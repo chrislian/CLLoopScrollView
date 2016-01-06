@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CLLoopViewDelegate{
+    func selectLoopViewPage(idx:Int);
+}
+
 class CLLoopView: UIView,UIScrollViewDelegate {
 
     //MARK: life cycle
@@ -145,7 +149,11 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     
     //MARK: event response
     @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
-        //todo
+        guard let tmp = delegate else{
+            print("delegate is nil")
+            return
+        }
+        tmp.selectLoopViewPage(currentPage)
     }
     @objc private func autoTurnNextView(){
         
@@ -157,9 +165,10 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         self.updateImageData()
     }
     
-    //MARK: setter & getter
+    //MARK: - setter & getter
     var timer:NSTimer? = nil
     var currentPage:Int = 0
+    var delegate:CLLoopViewDelegate? = nil
     
     var timeInterval:NSTimeInterval = 3{
         willSet{

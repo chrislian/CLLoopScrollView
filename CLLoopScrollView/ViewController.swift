@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,CLLoopViewDelegate {
 
+    //MARK - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,11 +26,12 @@ class ViewController: UIViewController {
         self.view.addSubview(loopView)
         loopView.arrImage = images;
         loopView.autoShow = true
+        loopView.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK - CLLoopView Delegate
+    func selectLoopViewPage(idx: Int) {
+        print("select page:\(idx)")
     }
 }
 
