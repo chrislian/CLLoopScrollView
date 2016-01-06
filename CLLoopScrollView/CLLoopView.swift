@@ -14,7 +14,7 @@ protocol CLLoopViewDelegate{
 
 class CLLoopView: UIView,UIScrollViewDelegate {
 
-    //MARK: life cycle
+    //MARK: - life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initializeUI()
@@ -28,7 +28,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         self.stopTimer()
     }
     
-    //MARK: UIScrollView delegate
+    //MARK: - UIScrollView delegate
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let ratio = scrollView.contentOffset.x/self.frame.size.width
         self.endScrollMethod(ratio)
@@ -43,7 +43,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         self.stopTimer()
     }
     
-    //MARK: reload data
+    //MARK: - reload data
     private func updateImageData(){
         let array = self.loopScrollView.subviews
         for view in array{
@@ -166,7 +166,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     }
     
     //MARK: - setter & getter
-    var timer:NSTimer? = nil
+    var timer:NSTimer?  = nil
     var currentPage:Int = 0
     var delegate:CLLoopViewDelegate? = nil
     
@@ -203,8 +203,8 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     
-    private let pageControl:UIPageControl = UIPageControl()
-    
+    private let pageControl:UIPageControl   = UIPageControl()
+
     private let loopScrollView:UIScrollView = UIScrollView()
 
 }
