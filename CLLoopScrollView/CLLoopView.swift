@@ -85,7 +85,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         loopScrollView.contentOffset = CGPoint(x: self.frame.size.width,y: 0)
 
     }
-    
+    //
     private func endScrollMethod(ratio:CGFloat){
         
         if ratio <= 0.8{
@@ -124,7 +124,11 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     
-    
+    /**
+     初始化
+     
+     - returns:
+     */
     private func initializeUI(){
         
         loopScrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
@@ -166,10 +170,10 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     }
     
     //MARK: - setter & getter
-    var timer:NSTimer?  = nil
-    var currentPage:Int = 0
+    private var timer:NSTimer?       = nil
     var delegate:CLLoopViewDelegate? = nil
-    
+    var currentPage:Int = 0
+    /// 定时跳转到下一页
     var timeInterval:NSTimeInterval = 3{
         willSet{
             if autoShow{
@@ -182,7 +186,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
             }
         }
     }
-    
+    //是否定时跳转到下一页
     var autoShow:Bool = false{
         didSet{
             if autoShow{
@@ -192,7 +196,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
             }
         }
     }
-    
+    //图片数组
     var arrImage:[UIImage] = []{
         willSet{
             currentPage = 0
