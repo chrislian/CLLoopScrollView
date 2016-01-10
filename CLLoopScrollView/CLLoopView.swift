@@ -141,8 +141,8 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         
         pageControl.frame = CGRectMake(0,self.frame.size.height - 20,self.frame.size.width,20)
         pageControl.userInteractionEnabled = false
-        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.298, green: 0.298, blue: 0.298, alpha: 1.0 )
-        pageControl.pageIndicatorTintColor = UIColor ( red: 0.902, green: 0.902, blue: 0.902, alpha: 1.0 )
+        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.0, green: 0.502, blue: 1.0, alpha: 1.0 )
+        pageControl.pageIndicatorTintColor = UIColor ( red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0 )
         self.addSubview(pageControl)
         
         let tap = UITapGestureRecognizer(target: self, action: "tapGestureHandle:")
