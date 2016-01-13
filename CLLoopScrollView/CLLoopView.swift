@@ -44,12 +44,12 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         loopScrollView.addGestureRecognizer(tap)
         
         
-        self.imageView0.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        self.imageView1.frame = CGRect(x: width, y: 0, width: width, height: height)
-        self.imageView2.frame = CGRect(x: width * 2.0, y: 0, width: width, height: height)
-        self.loopScrollView.addSubview(self.imageView0)
-        self.loopScrollView.addSubview(self.imageView1)
-        self.loopScrollView.addSubview(self.imageView2)
+        imageView0.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        imageView1.frame = CGRect(x: width, y: 0, width: width, height: height)
+        imageView2.frame = CGRect(x: width * 2.0, y: 0, width: width, height: height)
+        loopScrollView.addSubview(imageView0)
+        loopScrollView.addSubview(imageView1)
+        loopScrollView.addSubview(imageView2)
     }
     
     //MARK: - life cycle
@@ -103,14 +103,14 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     //
     private func endScrollMethod(ratio:CGFloat){
         
-        if ratio <= 0.8{
+        if ratio <= 0.7{
             if currentPage - 1 < 0{
                 currentPage = arrImage.count - 1
             }else{
                 currentPage -= 1
             }
         }
-        if ratio >= 1.2{
+        if ratio >= 1.3{
             if currentPage == arrImage.count - 1{
                 currentPage = 0
             }else{
