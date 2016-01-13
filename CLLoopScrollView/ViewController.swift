@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController,CLLoopViewDelegate {
 
-    //MARK - Life cycle
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,7 +29,7 @@ class ViewController: UIViewController,CLLoopViewDelegate {
         loopView.delegate = self
     }
 
-    //MARK - CLLoopView Delegate
+    //MARK: - CLLoopView Delegate
     func selectLoopViewPage(idx: Int) {
         print("select page:\(idx)")
     }

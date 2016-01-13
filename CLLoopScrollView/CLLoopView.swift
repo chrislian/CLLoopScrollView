@@ -13,7 +13,45 @@ protocol CLLoopViewDelegate{
 }
 
 class CLLoopView: UIView,UIScrollViewDelegate {
-
+    
+    /**
+     初始化
+     
+     - returns:
+     */
+    private func initializeUI(){
+        
+        let width = self.frame.size.width;
+        let height = self.frame.size.height;
+        
+        loopScrollView.frame = CGRectMake(0,0,width,height)
+        loopScrollView.contentSize = CGSizeMake(width * 3.0,height)
+        loopScrollView.showsVerticalScrollIndicator = false
+        loopScrollView.showsHorizontalScrollIndicator = false
+        loopScrollView.delegate = self
+        loopScrollView.bounces = false
+        self.addSubview(loopScrollView)
+        
+        pageControl.frame = CGRectMake(0,height - 20,width,20)
+        pageControl.userInteractionEnabled = false
+        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.0, green: 0.502, blue: 1.0, alpha: 1.0 )
+        pageControl.pageIndicatorTintColor = UIColor ( red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0 )
+        self.addSubview(pageControl)
+        
+        let tap = UITapGestureRecognizer(target: self, action: "tapGestureHandle:")
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        loopScrollView.addGestureRecognizer(tap)
+        
+        
+        self.imageView0.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.imageView1.frame = CGRect(x: width, y: 0, width: width, height: height)
+        self.imageView2.frame = CGRect(x: width * 2.0, y: 0, width: width, height: height)
+        self.loopScrollView.addSubview(self.imageView0)
+        self.loopScrollView.addSubview(self.imageView1)
+        self.loopScrollView.addSubview(self.imageView2)
+    }
+    
     //MARK: - life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,28 +83,6 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     
     //MARK: - reload data
     private func updateImageData(){
-        let array = self.loopScrollView.subviews
-        for view in array{
-            view.removeFromSuperview()
-        }
-        let imageView0:UIImageView = {
-            let imageView = UIImageView()
-            imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-            self.loopScrollView.addSubview(imageView)
-            return imageView
-        }()
-        let imageView1:UIImageView = {
-            let imageView = UIImageView()
-            imageView.frame = CGRect(x: self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-            self.loopScrollView.addSubview(imageView)
-            return imageView
-        }()
-        let imageView2:UIImageView = {
-            let imageView = UIImageView()
-            imageView.frame = CGRect(x: self.frame.size.width * 2.0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-            self.loopScrollView.addSubview(imageView)
-            return imageView
-        }()
         
         if currentPage == 0{
             imageView0.image = arrImage.last
@@ -83,7 +99,6 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
         pageControl.currentPage = currentPage
         loopScrollView.contentOffset = CGPoint(x: self.frame.size.width,y: 0)
-
     }
     //
     private func endScrollMethod(ratio:CGFloat){
@@ -124,32 +139,6 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     
-    /**
-     初始化
-     
-     - returns:
-     */
-    private func initializeUI(){
-        
-        loopScrollView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height)
-        loopScrollView.contentSize = CGSizeMake(self.frame.size.width * 3.0,self.frame.size.height)
-        loopScrollView.showsVerticalScrollIndicator = false
-        loopScrollView.showsHorizontalScrollIndicator = false
-        loopScrollView.delegate = self
-        loopScrollView.bounces = false
-        self.addSubview(loopScrollView)
-        
-        pageControl.frame = CGRectMake(0,self.frame.size.height - 20,self.frame.size.width,20)
-        pageControl.userInteractionEnabled = false
-        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.0, green: 0.502, blue: 1.0, alpha: 1.0 )
-        pageControl.pageIndicatorTintColor = UIColor ( red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0 )
-        self.addSubview(pageControl)
-        
-        let tap = UITapGestureRecognizer(target: self, action: "tapGestureHandle:")
-        tap.numberOfTapsRequired = 1
-        tap.numberOfTouchesRequired = 1
-        loopScrollView.addGestureRecognizer(tap)
-    }
     
     //MARK: event response
     @objc private func tapGestureHandle(tap:UITapGestureRecognizer){
@@ -208,7 +197,10 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     }
     
     private let pageControl:UIPageControl   = UIPageControl()
-
     private let loopScrollView:UIScrollView = UIScrollView()
+    
+    private let imageView0:UIImageView = UIImageView()
+    private let imageView1:UIImageView = UIImageView()
+    private let imageView2:UIImageView = UIImageView()
 
 }
