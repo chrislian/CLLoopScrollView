@@ -24,8 +24,11 @@ class ViewController: UIViewController,CLLoopViewDelegate {
         
         let loopView = CLLoopView(frame: CGRectMake(0, 22, self.view.frame.size.width, self.view.frame.size.width/16 * 9))
         self.view.addSubview(loopView)
+        //更新图片数组
         loopView.arrImage = images;
+        //开启自动翻页
         loopView.autoShow = true
+        //代理
         loopView.delegate = self
     }
 
