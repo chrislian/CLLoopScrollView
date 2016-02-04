@@ -1,4 +1,4 @@
-# CLRollingCycleView
+# CLLoopScrollView
 >首页循环滚动播放图片
 
 ![imageView](https://github.com/chrislian/CLLoopScrollView/blob/master/clloopscrollview.gif)
