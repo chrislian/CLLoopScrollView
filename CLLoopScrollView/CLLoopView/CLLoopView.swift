@@ -12,7 +12,7 @@ public protocol CLLoopViewDelegate{
     func selectLoopViewPage(idx:Int);
 }
 
-class CLLoopView: UIView,UIScrollViewDelegate {
+public class CLLoopView: UIView,UIScrollViewDelegate {
     
     /**
      初始化
@@ -58,7 +58,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         self.initializeUI()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -67,17 +67,17 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     }
     
     //MARK: - UIScrollView delegate
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let ratio = scrollView.contentOffset.x/self.frame.size.width
         self.endScrollMethod(ratio)
     }
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate{
             let ratio = scrollView.contentOffset.x/self.frame.size.width
             self.endScrollMethod(ratio)
         }
     }
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         self.stopTimer()
     }
     
