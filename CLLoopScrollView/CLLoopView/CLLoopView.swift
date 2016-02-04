@@ -53,7 +53,7 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
     }
     
     //MARK: - life cycle
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         self.initializeUI()
     }
@@ -160,10 +160,16 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
     
     //MARK: - setter & getter
     private var timer:NSTimer?       = nil
+    private let pageControl:UIPageControl   = UIPageControl()
+    private let loopScrollView:UIScrollView = UIScrollView()
+    private let imageView0:UIImageView = UIImageView()
+    private let imageView1:UIImageView = UIImageView()
+    private let imageView2:UIImageView = UIImageView()
+    
     public var delegate:CLLoopViewDelegate? = nil
     public var currentPage:Int = 0
     /// 定时跳转到下一页
-    var timeInterval:NSTimeInterval = 3{
+    public var timeInterval:NSTimeInterval = 3{
         willSet{
             if autoShow{
                 self.stopTimer()
@@ -195,12 +201,4 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
             self.updateImageData()
         }
     }
-    
-    private let pageControl:UIPageControl   = UIPageControl()
-    private let loopScrollView:UIScrollView = UIScrollView()
-    
-    private let imageView0:UIImageView = UIImageView()
-    private let imageView1:UIImageView = UIImageView()
-    private let imageView2:UIImageView = UIImageView()
-
 }
