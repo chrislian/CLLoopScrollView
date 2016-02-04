@@ -34,8 +34,8 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
         
         pageControl.frame = CGRectMake(0,height - 20,width,20)
         pageControl.userInteractionEnabled = false
-        pageControl.currentPageIndicatorTintColor = UIColor ( red: 0.0, green: 0.502, blue: 1.0, alpha: 1.0 )
-        pageControl.pageIndicatorTintColor = UIColor ( red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0 )
+        pageControl.currentPageIndicatorTintColor = self.currentPageIndicatorTintColor
+        pageControl.pageIndicatorTintColor = self.pageIndicatorTintColor
         self.addSubview(pageControl)
         
         let tap = UITapGestureRecognizer(target: self, action: "tapGestureHandle:")
@@ -166,7 +166,9 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
     private let imageView1:UIImageView = UIImageView()
     private let imageView2:UIImageView = UIImageView()
     
+    
     public var delegate:CLLoopViewDelegate? = nil
+    /// 当前页
     public var currentPage:Int = 0
     /// 定时跳转到下一页
     public var timeInterval:NSTimeInterval = 3{
@@ -181,7 +183,7 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
             }
         }
     }
-    //是否定时跳转到下一页
+    /// 是否定时跳转到下一页
     public var autoShow:Bool = false{
         didSet{
             if autoShow{
@@ -191,7 +193,7 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
             }
         }
     }
-    //图片数组
+    /// 图片数组
     public var arrImage:[UIImage] = []{
         willSet{
             currentPage = 0
@@ -199,6 +201,18 @@ public class CLLoopView: UIView,UIScrollViewDelegate {
         }
         didSet{
             self.updateImageData()
+        }
+    }
+    /// 指示器当前页颜色
+    public var currentPageIndicatorTintColor:UIColor = UIColor ( red: 1.0, green: 0.4, blue: 0.4, alpha: 1.0 ){
+        willSet{
+            pageControl.currentPageIndicatorTintColor = newValue
+        }
+    }
+    /// 指示器颜色
+    public var pageIndicatorTintColor:UIColor = UIColor ( red: 0.902, green: 0.902, blue: 0.902, alpha: 1.0 ){
+        willSet{
+            pageControl.pageIndicatorTintColor = newValue
         }
     }
 }

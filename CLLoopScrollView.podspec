@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CLLoopScrollView"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "UIScrollview 循环播放图片"
   s.description  = <<-DESC
                     无限滑动更新图片,定时自动跳转到下一页
