@@ -14,7 +14,6 @@ class ViewController: UIViewController,CLLoopViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor ( red: 0.902, green: 0.902, blue: 0.902, alpha: 1.0 )
         
         let image1 = UIImage(named: "Barcelona0")!
         let image2 = UIImage(named: "Barcelona1")!
@@ -22,13 +21,13 @@ class ViewController: UIViewController,CLLoopViewDelegate {
         let image4 = UIImage(named: "Barcelona3")!
         let images = [image1,image2,image3,image4]
         
-        let loopView = CLLoopView(frame: CGRectMake(0, 22, self.view.frame.size.width, self.view.frame.size.width/16 * 9))
+        let rect = CGRectMake(0, 22, self.view.frame.size.width, self.view.frame.size.width/16 * 9)
+        let loopView = CLLoopView(frame: rect)
         self.view.addSubview(loopView)
-        //更新图片数组
+        //add images
         loopView.arrImage = images;
-        //开启自动翻页
+        //auto turn to next page
         loopView.autoShow = true
-        //代理
         loopView.delegate = self
     }
 
