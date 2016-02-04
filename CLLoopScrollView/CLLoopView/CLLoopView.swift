@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CLLoopViewDelegate{
+public protocol CLLoopViewDelegate{
     func selectLoopViewPage(idx:Int);
 }
 
@@ -160,8 +160,8 @@ class CLLoopView: UIView,UIScrollViewDelegate {
     
     //MARK: - setter & getter
     private var timer:NSTimer?       = nil
-    var delegate:CLLoopViewDelegate? = nil
-    var currentPage:Int = 0
+    public var delegate:CLLoopViewDelegate? = nil
+    public var currentPage:Int = 0
     /// 定时跳转到下一页
     var timeInterval:NSTimeInterval = 3{
         willSet{
@@ -176,7 +176,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     //是否定时跳转到下一页
-    var autoShow:Bool = false{
+    public var autoShow:Bool = false{
         didSet{
             if autoShow{
                 self.startTimer()
@@ -186,7 +186,7 @@ class CLLoopView: UIView,UIScrollViewDelegate {
         }
     }
     //图片数组
-    var arrImage:[UIImage] = []{
+    public var arrImage:[UIImage] = []{
         willSet{
             currentPage = 0
             pageControl.numberOfPages = newValue.count
